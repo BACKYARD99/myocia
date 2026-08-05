@@ -121,17 +121,76 @@
     color:inherit;
   }
   .logo .paw{ width:22px; height:22px; color:inherit; }
-  nav.header-nav{ position:relative; display:flex; gap:6px; }
-  nav.header-nav a{
+  nav.header-nav{ position:relative; display:flex; align-items:center; gap:6px; }
+  nav.header-nav > a, nav.header-nav > .nav-item > a{
     position:relative;
     z-index:2;
+    display:inline-flex; align-items:center; gap:5px;
     font-size:15px; font-weight:600; color:inherit;
     opacity:.82;
     padding:9px 16px;
     border-radius:100px;
     transition:opacity .2s ease, transform .2s ease;
   }
-  nav.header-nav a:hover{ opacity:1; transform:translateY(-1px); }
+  nav.header-nav > a:hover, nav.header-nav > .nav-item > a:hover{ opacity:1; transform:translateY(-1px); }
+  .nav-item{ position:relative; display:flex; }
+  .nav-item > a::after{
+    content:'';
+    width:6px; height:6px;
+    border-right:1.5px solid currentColor;
+    border-bottom:1.5px solid currentColor;
+    transform:rotate(45deg);
+    margin-top:-2px;
+    opacity:.6;
+    transition:transform .2s ease, margin .2s ease;
+  }
+  .nav-item:hover > a::after, .nav-item:focus-within > a::after{ transform:rotate(225deg); margin-top:3px; }
+  .nav-dropdown{
+    position:absolute;
+    top:calc(100% + 12px);
+    left:50%;
+    transform:translateX(-50%) translateY(-6px);
+    min-width:210px;
+    background:rgba(33,50,74,.97);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    backdrop-filter:saturate(180%) blur(20px);
+    border:1px solid rgba(242,233,214,.14);
+    border-radius:18px;
+    padding:10px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+    transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s;
+    z-index:10;
+  }
+  .nav-item:hover .nav-dropdown,
+  .nav-item:focus-within .nav-dropdown{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translateX(-50%) translateY(0);
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .nav-dropdown a{
+    padding:10px 14px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:600;
+    color:var(--cream);
+    opacity:.85;
+    transition:opacity .15s ease, background-color .15s ease;
+  }
+  .nav-dropdown a:hover{ opacity:1; background:rgba(242,233,214,.09); }
+  header.nav-light .nav-dropdown{
+    background:rgba(248,242,228,.97);
+    border-color:rgba(51,80,122,.12);
+  }
+  header.nav-light .nav-dropdown a{ color:var(--blue-ink); }
+  header.nav-light .nav-dropdown a:hover{ background:rgba(51,80,122,.08); }
   .nav-indicator{
     position:absolute;
     top:0; left:0;
@@ -674,9 +733,25 @@
     <nav class="header-nav">
       <span class="nav-indicator" aria-hidden="true"></span>
       <a href="index.html#konzept">Konzept</a>
-      <a href="index.html#produkte">Produkte</a>
-      <a href="index.html#gruender">Gründer</a>
-      <a href="index.html#zielgruppen">Zielgruppen</a>
+      <div class="nav-item">
+        <a href="index.html#produkte">Produkte</a>
+        <div class="nav-dropdown">
+          <a href="produkt-dehnskulptur.html">Dehnskulptur</a>
+          <a href="produkt-rueckneige.html">Rückneige</a>
+          <a href="index.html#bundles">Bundles für Teams</a>
+        </div>
+      </div>
+      <a href="gruender.html">Gründer</a>
+      <div class="nav-item">
+        <a href="zielgruppen.html">Zielgruppen</a>
+        <div class="nav-dropdown">
+          <a href="zielgruppen.html#zuhause">Zuhause</a>
+          <a href="zielgruppen.html#buero">Büro</a>
+          <a href="zielgruppen.html#unternehmen">Unternehmen</a>
+          <a href="zielgruppen.html#praxen">Praxen</a>
+          <a href="zielgruppen.html#trainer">Teams &amp; Trainer:innen</a>
+        </div>
+      </div>
       <a href="index.html#kontakt">Kontakt</a>
     </nav>
     <div class="header-actions">
@@ -691,8 +766,8 @@
 <div class="mobile-nav" id="mobile-nav">
   <a href="index.html#konzept">Konzept</a>
   <a href="index.html#produkte">Produkte</a>
-  <a href="index.html#gruender">Gründer</a>
-  <a href="index.html#zielgruppen">Zielgruppen</a>
+  <a href="gruender.html">Gründer</a>
+  <a href="zielgruppen.html">Zielgruppen</a>
   <a href="index.html#kontakt">Kontakt</a>
   <a href="helpcenter.html">Hilfe-Center</a>
   <a href="index.html#kontakt" class="btn btn-primary">Beratung anfragen</a>
@@ -852,7 +927,7 @@
     const nav = document.querySelector('.header-nav');
     const indicator = document.querySelector('.nav-indicator');
     if(!nav || !indicator) return;
-    const links = nav.querySelectorAll('a');
+    const links = nav.querySelectorAll(':scope > a, :scope > .nav-item > a');
 
     links.forEach(function(link){
       link.addEventListener('mouseenter', function(){
