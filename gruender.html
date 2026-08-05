@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>myocia — Kraft in der Dehnung</title>
+<title>Armin Rothfuß — Gründer von myocia</title>
+<meta name="description" content="Die Geschichte von Armin Rothfuß, Gründer von myocia: Diplomsportpädagoge, Myoreflextherapeut und Heilpraktiker.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -519,12 +520,72 @@
     .hero-proof{ gap:20px; }
   }
 </style>
+
+<style>
+  /* ---------- Subheader ---------- */
+  .subhero{ background:var(--blue-ink); color:var(--cream); padding:150px 0 64px; }
+  .subhero .eyebrow{ color:var(--wood); }
+  .breadcrumb{ font-size:13px; color:rgba(242,233,214,.55); margin-bottom:14px; }
+  .breadcrumb a{ color:rgba(242,233,214,.85); text-decoration:underline; }
+  .subhero h1{ color:var(--cream); font-size:clamp(32px,4vw,50px); margin-top:12px; }
+  .subhero p.lede{ color:rgba(242,233,214,.82); font-size:17px; line-height:1.6; max-width:600px; margin-top:16px; }
+
+  /* ---------- Produkt detail ---------- */
+  .pd-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+  .pd-gallery{ display:flex; flex-direction:column; gap:20px; }
+  .pd-gallery img{ width:100%; border-radius:var(--radius-lg); box-shadow:0 20px 44px rgba(33,50,74,.14); }
+  .pd-copy h2{ font-size:26px; color:var(--blue-ink); margin-bottom:14px; }
+  .pd-copy p{ font-size:16px; line-height:1.65; color:#5B6773; margin-bottom:18px; }
+  .pd-specs-table{ width:100%; border-collapse:collapse; margin:22px 0 28px; }
+  .pd-specs-table tr{ border-bottom:1px solid rgba(35,48,63,.1); }
+  .pd-specs-table td{ padding:12px 4px; font-size:15px; color:#3D4753; }
+  .pd-specs-table td:first-child{ color:#8A96A3; width:45%; }
+  .pd-accessory{ background:var(--cream); border-radius:var(--radius-lg); padding:32px; margin-top:12px; }
+  .pd-accessory h3{ color:var(--blue-ink); font-size:20px; margin-bottom:10px; }
+  .pd-accessory p{ color:#5B6773; font-size:15px; line-height:1.6; margin-bottom:0; }
+  .pd-cta{ margin-top:34px; display:flex; gap:16px; flex-wrap:wrap; }
+  .pd-cta .btn-dark{ }
+  .pd-crosslink{ margin-top:60px; padding-top:36px; border-top:1px solid rgba(35,48,63,.1); display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+  .pd-crosslink a{ color:var(--blue); font-weight:700; }
+
+  /* ---------- Gründer detail ---------- */
+  .gr-layout{ display:grid; grid-template-columns:1.4fr 0.9fr; gap:50px; align-items:start; }
+  .gr-story p{ font-size:17px; line-height:1.75; color:#3D4753; margin-bottom:20px; }
+  .gr-quote-block{ background:var(--blue-ink); color:var(--cream); border-radius:var(--radius-lg); padding:44px; margin:8px 0 36px; }
+  .gr-quote-block .mark{ font-family:'Baloo 2',sans-serif; font-size:60px; color:var(--wood); line-height:1; display:block; margin-bottom:6px; }
+  .gr-quote-block p{ font-size:18px; line-height:1.65; color:rgba(242,233,214,.95); margin:0; }
+  .gr-facts{ display:flex; flex-direction:column; gap:18px; background:var(--cream); border-radius:var(--radius-lg); padding:30px; position:sticky; top:120px; }
+  .gr-facts div strong{ display:block; font-family:'Baloo 2',sans-serif; color:var(--blue-ink); font-size:15px; margin-bottom:3px; }
+  .gr-facts div span{ font-size:14px; color:#5B6773; line-height:1.5; }
+  .gr-external{ font-size:13.5px; color:#7C8894; margin-top:4px; }
+  .gr-external a{ color:var(--blue); text-decoration:underline; font-weight:600; }
+
+  /* ---------- Zielgruppen detail ---------- */
+  .zgd-item{ display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; padding:56px 0; border-bottom:1px solid rgba(35,48,63,.08); }
+  .zgd-item:first-child{ padding-top:0; }
+  .zgd-item:last-child{ border-bottom:none; }
+  .zgd-item.reverse .zgd-photo{ order:2; }
+  .zgd-photo img{ width:100%; border-radius:var(--radius-lg); box-shadow:0 20px 44px rgba(33,50,74,.14); }
+  .zgd-photo-icon{ background:var(--blue-ink); border-radius:var(--radius-lg); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; }
+  .zgd-num{ font-family:'Baloo 2',sans-serif; font-weight:800; font-size:14px; color:var(--wood); letter-spacing:.05em; display:block; margin-bottom:8px; }
+  .zgd-content h2{ font-size:28px; color:var(--blue-ink); margin-bottom:14px; }
+  .zgd-content p{ font-size:16px; line-height:1.65; color:#5B6773; }
+
+  @media (max-width: 980px){
+    .pd-grid{ grid-template-columns:1fr; }
+    .gr-layout{ grid-template-columns:1fr; }
+    .gr-facts{ position:static; }
+    .zgd-item, .zgd-item.reverse{ grid-template-columns:1fr; padding:36px 0; }
+    .zgd-item.reverse .zgd-photo{ order:0; }
+  }
+</style>
+
 </head>
 <body>
 
 <header>
   <div class="wrap">
-    <div class="logo">
+    <a class="logo" href="index.html">
       <svg class="paw" viewBox="0 0 24 24" fill="none">
         <path d="M12 21c-2.8 0-5-1.6-5-4.2 0-2.1 1.9-3.4 3.1-4.9C11 10.6 11.4 9 12 9s1 1.6 1.9 2.9c1.2 1.5 3.1 2.8 3.1 4.9 0 2.6-2.2 4.2-5 4.2Z" fill="currentColor"/>
         <circle cx="6.5" cy="9" r="1.7" fill="currentColor"/>
@@ -533,289 +594,78 @@
         <circle cx="14.5" cy="5.2" r="1.5" fill="currentColor"/>
       </svg>
       myocia
-    </div>
+    </a>
     <nav class="header-nav">
       <span class="nav-indicator" aria-hidden="true"></span>
-      <a href="#konzept">Konzept</a>
-      <a href="#produkte">Produkte</a>
-      <a href="#gruender">Gründer</a>
-      <a href="#zielgruppen">Zielgruppen</a>
-      <a href="#kontakt">Kontakt</a>
+      <a href="index.html#konzept">Konzept</a>
+      <a href="index.html#produkte">Produkte</a>
+      <a href="index.html#gruender">Gründer</a>
+      <a href="index.html#zielgruppen">Zielgruppen</a>
+      <a href="index.html#kontakt">Kontakt</a>
     </nav>
     <div class="header-actions">
-      <a href="#kontakt" class="btn btn-outline">Beratung anfragen</a>
+      <a href="index.html#kontakt" class="btn btn-outline">Beratung anfragen</a>
     </div>
   </div>
 </header>
 
-<!-- ================= HERO ================= -->
-<section class="hero" data-nav-theme="dark">
+
+<section class="subhero" data-nav-theme="dark">
   <div class="wrap">
-    <div class="hero-copy">
-      <span class="eyebrow" style="color:var(--wood);">KiD-Übungen · Myoreflextherapie</span>
-      <h1>Kraft in der <span class="accent">Dehnung</span><br>statt Rückenschmerzen im Alltag.</h1>
-      <p class="lede">myocia bringt die Übungsprinzipien der Myoreflextherapie als platzsparende Objekte aus Holz und Stahl direkt an die Wand – für die natürliche Aufrichtung des Körpers, zuhause wie im Büro.</p>
-      <div class="hero-actions">
-        <a href="#produkte" class="btn btn-primary">Produkte entdecken</a>
-        <a href="#zielgruppen" class="btn btn-outline">Für Praxen &amp; Unternehmen</a>
-      </div>
-      <div class="hero-proof">
-        <div><strong>3</strong>Geräte aus Holz &amp; Stahl</div>
-        <div><strong>25</strong>Jahre Praxiserfahrung</div>
-        <div><strong>0</strong>Termine, Kabel, Akkus</div>
-      </div>
-    </div>
-    <div class="hero-blob-wrap">
-      <img class="hero-photo" src="images/hero.jpg" alt="Zwei Myocia-Wandmodule aus Holz, montiert an einer blaugrauen Wand">
-    </div>
+    <div class="breadcrumb"><a href="index.html">Start</a> / Gründer</div>
+    <span class="eyebrow">Der Gründer</span>
+    <h1>Armin Rothfuß</h1>
+    <p class="lede">Diplomsportpädagoge, Myoreflextherapeut und Heilpraktiker – und der Kopf hinter myocia.</p>
   </div>
-  <div class="hero-scroll-cue">Scrollen ↓</div>
 </section>
 
-<svg class="wave-divider" viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-  <path fill="#4E6F98" d="M0 0 H1440 V40 C1200 80 1080 10 900 40 C700 75 620 5 420 35 C240 60 120 15 0 45 Z"/>
-</svg>
-
-<!-- ================= KONZEPT ================= -->
-<section class="konzept section-pad" id="konzept" data-nav-theme="light">
+<section class="section-pad" data-nav-theme="light">
   <div class="wrap">
-    <div class="konzept-grid">
-      <div>
-        <div class="section-head" style="margin-bottom:36px;">
-          <span class="eyebrow">Das Konzept</span>
-          <h2>Form folgt Funktion – und Bewegung</h2>
-          <p>Die Übungen sind an die KiD-Übungen (Kraft in der Dehnung) angelehnt und bauen auf dem ganzheitlichen Therapieansatz der Myoreflextherapie auf. Sie fördern langfristig Gesundheit und Beweglichkeit, gleichen schädliche Haltungen aus und fördern die natürliche Aufrichtung des Körpers – mit platzsparenden, schlicht gestalteten Geräten, die sich mühelos in jedes Zuhause und Büro einfügen.</p>
+    <div class="gr-layout">
+      <div class="gr-story">
+        <img src="images/armin-rothfuss.jpg" alt="Armin Rothfuß" style="width:220px; border-radius:var(--radius-lg); float:right; margin:0 0 24px 28px; box-shadow:0 20px 44px rgba(33,50,74,.16);">
+
+        <div class="gr-quote-block">
+          <span class="mark">&#8220;</span>
+          <p>Mit Anfang 20 erhielt ich als Sportstudent die Diagnose Hüftarthrose – mit der Aussage des Orthopäden, ich könne mein Studium an den Nagel hängen! Diese Aussicht wollte ich nicht akzeptieren und begann, nach alternativen Therapieformen zu suchen. Dabei stieß ich auf die Biokinematik und die Myoreflextherapie, deren spezielle Übungsansätze mich nachhaltig überzeugten und meine Beschwerden so weit linderten, dass ich heute – über 30 Jahre später – keine künstliche Hüfte benötige und durch regelmäßiges Üben schmerzfrei bin.</p>
         </div>
-        <div class="konzept-steps">
-          <div class="konzept-step">
-            <div class="num">1</div>
-            <div><h3>An der Wand montieren</h3><p>Dehnskulptur und Rückneige werden fest an der Wand montiert – Montagematerial ist inklusive.</p></div>
-          </div>
-          <div class="konzept-step">
-            <div class="num">2</div>
-            <div><h3>Dehnen &amp; Aufrichten</h3><p>Zahlreiche Kontaktstellen für Hände und Füße aktivieren den gesamten Bewegungsapparat.</p></div>
-          </div>
-          <div class="konzept-step">
-            <div class="num">3</div>
-            <div><h3>Regelmäßig üben</h3><p>Kurze, wiederkehrende Anwendung statt seltener, langer Behandlung – effektiv erhalten bleibt sie trotzdem.</p></div>
-          </div>
+
+        <p>Seit fast 25 Jahren wendet Armin Rothfuß diese Übungen nun auch bei seinen Patientinnen und Patienten an. Mittlerweile sind vergleichbare Trainingsformen auch in Fitnessstudios verbreitet, und ihre Wirkung ist wissenschaftlich belegt.</p>
+
+        <p>Angeregt durch die positiven Erfahrungen entstand die Idee, einfache und effektive Trainingsgeräte zu entwickeln, die die Prinzipien der KiD-Übungen (Kraft in der Dehnung) und der Biokinematik mit einem platzsparenden, ansprechenden Design verbinden – für den Einsatz im Alltag wie auch im beruflichen Umfeld. So entstand myocia, in Zusammenarbeit mit STUDIOPETERGAESSLER.</p>
+      </div>
+
+      <div class="gr-facts">
+        <div>
+          <strong>Name</strong>
+          <span>Armin Rothfuß</span>
+        </div>
+        <div>
+          <strong>Rollen</strong>
+          <span>Diplomsportpädagoge, Myoreflextherapeut &amp; Heilpraktiker</span>
+        </div>
+        <div>
+          <strong>Erfahrung</strong>
+          <span>Seit fast 25 Jahren in der Anwendung von Myoreflextherapie &amp; Biokinematik bei Patientinnen und Patienten</span>
+        </div>
+        <div>
+          <strong>Methode</strong>
+          <span>KiD-Übungen (Kraft in der Dehnung), Biokinematik, Myoreflextherapie</span>
+        </div>
+        <div class="gr-external">
+          Mehr über seine Praxis: <a href="https://www.myopraxis-muellheim.de/das-team/armin-rothfuss" target="_blank" rel="noopener">myopraxis-muellheim.de ↗</a>
         </div>
       </div>
-      <div class="konzept-visual">
-        <svg viewBox="0 0 420 500" xmlns="http://www.w3.org/2000/svg">
-          <path fill="#4E6F98" d="M60 0 H360 C360 50 320 70 330 120 C340 180 400 190 392 260 C386 320 330 320 338 380 C344 430 390 445 372 500 H60 C60 445 20 430 40 375 C60 320 5 305 20 245 C34 195 90 185 82 120 C76 70 60 50 60 0Z"/>
-          <g fill="#B87B41">
-            <circle cx="150" cy="150" r="14"/>
-            <circle cx="260" cy="150" r="14"/>
-            <circle cx="205" cy="230" r="14"/>
-            <circle cx="150" cy="310" r="14"/>
-            <circle cx="260" cy="310" r="14"/>
-            <circle cx="205" cy="390" r="14"/>
-          </g>
-        </svg>
-      </div>
+    </div>
+
+    <div class="pd-crosslink">
+      <span style="color:#5B6773; font-size:14.5px;">Entdecken Sie die Geräte, die aus dieser Geschichte entstanden sind.</span>
+      <a href="index.html#produkte">Zu den Produkten →</a>
     </div>
   </div>
 </section>
 
-<!-- ================= GRÜNDER ================= -->
-<section class="gruender section-pad" id="gruender" data-nav-theme="dark">
-  <div class="wrap">
-    <div class="gruender-grid">
-      <div class="gruender-visual">
-        <img src="images/armin-rothfuss.jpg" alt="Armin Rothfuß, Gründer von myocia">
-      </div>
-      <div>
-        <span class="eyebrow">Der Gründer</span>
-        <h2>Armin Rothfuß</h2>
-        <p class="gruender-teaser">Als Sportstudent erhielt Armin Rothfuß die Diagnose Hüftarthrose – und fand über Biokinematik und Myoreflextherapie einen Weg zurück in ein schmerzfreies, bewegtes Leben. Seit fast 25 Jahren gibt er diese Übungen an seine Patient:innen weiter. Daraus entstand myocia.</p>
-        <div class="gruender-person">
-          <div class="gruender-avatar"><img src="images/armin-rothfuss.jpg" alt=""></div>
-          <div>
-            <strong>Armin Rothfuß</strong>
-            <span>Diplomsportpädagoge, Myoreflextherapeut &amp; Heilpraktiker</span>
-          </div>
-        </div>
-        <a href="gruender.html" class="gruender-link">Seine Geschichte lesen →</a>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ================= PRODUKTE ================= -->
-<section class="produkte section-pad" id="produkte" data-nav-theme="dark">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Die Produkte</span>
-      <h2>Zwei Geräte. Volle Wirkung.</h2>
-      <p>Ausführung: Holz Birke Multiplex, weiß pigmentiert geölt, und Metall Stahlblech, pulverbeschichtet RAL 9016. Design STUDIOPETERGAESSLER, 2025.</p>
-    </div>
-    <div class="product-grid">
-      <div class="product-card">
-        <span class="tag">Ganzkörper · inkl. Wadendehner</span>
-        <div class="product-visual">
-          <img src="images/dehnskulptur.jpg" alt="Dehnskulptur, an der Wand montiert">
-        </div>
-        <h3>Dehnskulptur</h3>
-        <p>Skulpturales Übungsgerät zur ganzheitlichen Aktivierung des Bewegungsapparates – inklusive Wadendehner als Aufsatz für die Fußpartie.</p>
-        <div class="product-specs">
-          <div><strong>189×43×20 cm</strong>H × B × T</div>
-          <div><strong>Birke</strong>Multiplex, geölt</div>
-        </div>
-        <a href="produkt-dehnskulptur.html" class="product-more">Details &amp; Maße →</a>
-      </div>
-      <div class="product-card">
-        <span class="tag">Rücken</span>
-        <div class="product-visual">
-          <img src="images/rueckneige.jpg" alt="Rückneige, an der Wand montiert">
-        </div>
-        <h3>Rückneige</h3>
-        <p>Innovatives Gerät zur Rückneige mit abnehmbarer Auflage und verstellbarer Seillänge.</p>
-        <div class="product-specs">
-          <div><strong>112×5,5×25 cm</strong>H × B × T</div>
-          <div><strong>Stahlblech</strong>pulverbeschichtet</div>
-        </div>
-        <a href="produkt-rueckneige.html" class="product-more">Details &amp; Maße →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ZIELGRUPPEN ================= -->
-<section class="zielgruppen section-pad" id="zielgruppen" data-nav-theme="light">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Für jeden Ort, an dem Menschen sich bewegen – oder eben nicht</span>
-      <h2>Zielgruppen</h2>
-      <p>Fünf Orte, an denen myocia zum Einsatz kommt. <a href="zielgruppen.html" style="color:var(--blue); font-weight:700; text-decoration:underline;">Alle Zielgruppen im Detail →</a></p>
-    </div>
-    <div class="zg-grid">
-
-      <a href="zielgruppen.html#zuhause" class="zg-card">
-        <svg class="blob-icon" viewBox="0 0 56 56"><path fill="var(--blue)" d="M8 10h30c0 6-4 8-3 13s10 6 8 15c-1 5-8 5-6 10s7 5 5 8H8c0-3 5-4 3-8s-8-4-6-10c2-5 9-5 8-10-1-5-5-7-5-18Z"/></svg>
-        <h3>Zuhause</h3>
-        <p>Für die tägliche Anwendung im eigenen Zuhause.</p>
-        <span class="zg-tag">Mehr →</span>
-      </a>
-
-      <a href="zielgruppen.html#buero" class="zg-card">
-        <svg class="blob-icon" viewBox="0 0 56 56"><path fill="var(--wood)" d="M8 10h30c0 6-4 8-3 13s10 6 8 15c-1 5-8 5-6 10s7 5 5 8H8c0-3 5-4 3-8s-8-4-6-10c2-5 9-5 8-10-1-5-5-7-5-18Z"/></svg>
-        <h3>Büro</h3>
-        <p>Griffbereit im Flur oder Pausenraum.</p>
-        <span class="zg-tag">Mehr →</span>
-      </a>
-
-      <a href="zielgruppen.html#unternehmen" class="zg-card">
-        <svg class="blob-icon" viewBox="0 0 56 56"><path fill="var(--blue)" d="M8 10h30c0 6-4 8-3 13s10 6 8 15c-1 5-8 5-6 10s7 5 5 8H8c0-3 5-4 3-8s-8-4-6-10c2-5 9-5 8-10-1-5-5-7-5-18Z"/></svg>
-        <h3>Unternehmen</h3>
-        <p>Teil der betrieblichen Gesundheitsförderung.</p>
-        <span class="zg-tag">Mehr →</span>
-      </a>
-
-      <a href="zielgruppen.html#praxen" class="zg-card">
-        <svg class="blob-icon" viewBox="0 0 56 56"><path fill="var(--wood)" d="M8 10h30c0 6-4 8-3 13s10 6 8 15c-1 5-8 5-6 10s7 5 5 8H8c0-3 5-4 3-8s-8-4-6-10c2-5 9-5 8-10-1-5-5-7-5-18Z"/></svg>
-        <h3>Praxen</h3>
-        <p>Für Physiotherapie, Osteopathie &amp; Heilpraxis.</p>
-        <span class="zg-tag">Mehr →</span>
-      </a>
-
-      <a href="zielgruppen.html#trainer" class="zg-card">
-        <svg class="blob-icon" viewBox="0 0 56 56"><path fill="var(--blue)" d="M8 10h30c0 6-4 8-3 13s10 6 8 15c-1 5-8 5-6 10s7 5 5 8H8c0-3 5-4 3-8s-8-4-6-10c2-5 9-5 8-10-1-5-5-7-5-18Z"/></svg>
-        <h3>Teams &amp; Trainer:innen</h3>
-        <p>Schulungen &amp; Trainer:innenausbildung.</p>
-        <span class="zg-tag">Mehr →</span>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ================= BUNDLES ================= -->
-<section class="bundles section-pad" id="bundles" data-nav-theme="light">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Für Unternehmen</span>
-      <h2>Bundles</h2>
-      <p>Beide Bundles umfassen Dehnskulptur, Rückneige &amp; Wadendehner inklusive Lieferung und Montage – der Unterschied liegt im Umfang der Schulung.</p>
-    </div>
-    <div class="bundle-grid">
-      <div class="bundle-card">
-        <span class="tag">Bundle 1</span>
-        <h3>Einstieg fürs Team</h3>
-        <ul>
-          <li>Dehnskulptur, Rückneige &amp; Wadendehner</li>
-          <li>Inkl. Lieferung &amp; Montage</li>
-          <li>Geräteschulung, 0,5 Tage*</li>
-        </ul>
-      </div>
-      <div class="bundle-card">
-        <span class="tag">Bundle 2</span>
-        <h3>Mit Trainer:innenausbildung</h3>
-        <ul>
-          <li>Dehnskulptur, Rückneige &amp; Wadendehner</li>
-          <li>Inkl. Lieferung &amp; Montage</li>
-          <li>Geräteschulung mit Trainer:innenausbildung, 1 Tag*</li>
-        </ul>
-      </div>
-    </div>
-    <p class="bundle-note">* Die Schulung wird in Absprache an die Unternehmensgröße optimiert umgesetzt. Bei einer Gruppe von bis zu 10 Personen wird ein halbtägiger Einführungskurs für das gesamte Team angeboten, bei dem auf die individuellen Bedürfnisse eingegangen wird (Bundle 1). Bei größeren Teams wird eine Gruppe von bis zu 10 Personen als Trainer:innen geschult, die wiederum die gelernten Übungen mit dem bereitgestellten Konzept weitergeben – hierfür ist eine tiefgründigere Tagesschulung notwendig (Bundle 2). Wir beraten Sie gerne bei der Auswahl des passenden Bundles.</p>
-  </div>
-</section>
-
-<!-- ================= CTA ================= -->
-<div style="padding:20px 0 100px;" data-nav-theme="light">
-  <div class="cta-banner">
-    <svg style="position:absolute; right:-60px; top:-60px; width:260px; opacity:.14;" viewBox="0 0 200 200"><path fill="#F2E9D6" d="M30 0h100c0 20-14 26-10 42s34 20 26 50c-4 16-26 16-20 32s22 16 16 26H30c0-10 16-14 10-26s-26-14-20-32c6-20 30-20 26-42-4-18-16-20-16-50Z"/></svg>
-    <div>
-      <h2>Bereit für mehr Beweglichkeit im Alltag?</h2>
-      <p>Wir beraten Sie gerne bei der Auswahl der passenden Geräte und Bundles – für Zuhause, die Praxis oder Ihr gesamtes Team.</p>
-    </div>
-    <div class="cta-actions">
-      <a href="#kontakt" class="btn btn-primary">Beratung anfragen</a>
-      <a href="#produkte" class="btn btn-outline">Produkte ansehen</a>
-    </div>
-  </div>
-</div>
-
-<!-- ================= KONTAKT ================= -->
-<section class="kontakt section-pad" id="kontakt" data-nav-theme="dark">
-  <div class="wrap">
-    <div class="kontakt-grid">
-      <div class="kontakt-intro">
-        <span class="eyebrow">Kontakt</span>
-        <h2>Sprechen wir über Ihr Vorhaben</h2>
-        <p>Ob Zuhause, Praxis oder ganzes Team – wir beraten Sie gerne zu Geräten, Bundles und Schulungen.</p>
-        <div class="kontakt-detail">
-          <div><strong>E-Mail</strong><a href="mailto:hallo@myocia.com">hallo@myocia.com</a></div>
-        </div>
-      </div>
-      <form class="contact-form" action="mailto:hallo@myocia.com" method="post" enctype="text/plain">
-        <div class="form-row">
-          <div class="form-field">
-            <label for="cf-name">Name</label>
-            <input type="text" id="cf-name" name="Name" placeholder="Ihr Name" required>
-          </div>
-          <div class="form-field">
-            <label for="cf-email">E-Mail</label>
-            <input type="email" id="cf-email" name="E-Mail" placeholder="ihre@email.de" required>
-          </div>
-        </div>
-        <div class="form-field">
-          <label for="cf-subject">Betreff</label>
-          <input type="text" id="cf-subject" name="Betreff" placeholder="z. B. Beratung zu Bundle 2">
-        </div>
-        <div class="form-field">
-          <label for="cf-message">Nachricht</label>
-          <textarea id="cf-message" name="Nachricht" placeholder="Ihre Nachricht an uns …" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Nachricht senden</button>
-        <p class="form-note">Öffnet Ihr E-Mail-Programm mit vorausgefüllter Nachricht an hallo@myocia.com.</p>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
 <footer data-nav-theme="dark">
   <div class="wrap">
     <div class="footer-top">
@@ -836,18 +686,18 @@
         <h4>Produkte</h4>
         <a href="produkt-dehnskulptur.html">Dehnskulptur</a>
         <a href="produkt-rueckneige.html">Rückneige</a>
-        <a href="#bundles">Bundles für Teams</a>
+        <a href="index.html#bundles">Bundles für Teams</a>
       </div>
       <div class="footer-col">
         <h4>Über myocia</h4>
         <a href="zielgruppen.html">Zielgruppen</a>
         <a href="gruender.html">Der Gründer</a>
-        <a href="#konzept">Das Konzept</a>
+        <a href="index.html#konzept">Das Konzept</a>
       </div>
       <div class="footer-col">
         <h4>Kontakt</h4>
         <a href="mailto:hallo@myocia.com">hallo@myocia.com</a>
-        <a href="#kontakt">Beratung anfragen</a>
+        <a href="index.html#kontakt">Beratung anfragen</a>
       </div>
     </div>
     <div class="footer-bottom">
