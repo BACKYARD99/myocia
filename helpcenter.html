@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hilfe-Center — myocia</title>
+<meta name="description" content="Erklärvideos und Anleitungen zu Dehnskulptur, Rückneige, Wandmontage und den ersten Schritten mit myocia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --blue: #4E6F98;
+    --blue-deep: #33507A;
+    --blue-ink: #21324A;
+    --cream: #F2E9D6;
+    --cream-soft: #F8F2E4;
+    --wood: #B87B41;
+    --wood-dark: #7C4E24;
+    --ink: #23303F;
+    --radius-lg: 40px;
+    --radius-sm: 18px;
+    --maxw: 1180px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--cream-soft);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  .eyebrow{
+    font-family:'Inter', sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--wood-dark);
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:15px 28px;
+    border-radius:100px;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:600;
+    font-size:16px;
+    transition:transform .18s ease, box-shadow .18s ease;
+    cursor:pointer;
+    border:none;
+  }
+  .btn-primary{
+    background:var(--cream);
+    color:var(--blue-ink);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.18); }
+  .btn-outline{
+    background:transparent;
+    color:var(--cream);
+    border:1.5px solid rgba(242,233,214,.55);
+  }
+  .btn-outline:hover{ background:rgba(242,233,214,.12); transform:translateY(-2px); }
+  .btn-dark{
+    background:var(--blue-ink);
+    color:var(--cream);
+  }
+  .btn-dark:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(33,50,74,.25); }
+
+  /* ---------- Header ---------- */
+  header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    padding:18px 0;
+    color:var(--cream);
+    background:rgba(33,50,74,.4);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid rgba(242,233,214,.09);
+    box-shadow:0 1px 20px rgba(15,25,40,.08);
+    transition:color .4s ease, background-color .4s ease, border-color .4s ease, box-shadow .4s ease;
+  }
+  header .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  header.nav-light{
+    color:var(--blue-ink);
+    background:rgba(248,242,228,.78);
+    border-bottom-color:rgba(51,80,122,.08);
+    box-shadow:0 1px 20px rgba(33,50,74,.06);
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:22px;
+    color:inherit;
+  }
+  .logo .paw{ width:22px; height:22px; color:inherit; }
+  nav.header-nav{ position:relative; display:flex; gap:6px; }
+  nav.header-nav a{
+    position:relative;
+    z-index:2;
+    font-size:15px; font-weight:600; color:inherit;
+    opacity:.82;
+    padding:9px 16px;
+    border-radius:100px;
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  nav.header-nav a:hover{ opacity:1; transform:translateY(-1px); }
+  nav.header-nav a.is-current{ opacity:1; }
+  .nav-indicator{
+    position:absolute;
+    top:0; left:0;
+    height:100%;
+    width:0;
+    border-radius:100px;
+    background:rgba(242,233,214,.12);
+    border:1px solid rgba(242,233,214,.45);
+    opacity:0;
+    transform:scale(.85);
+    pointer-events:none;
+    transition:width .28s cubic-bezier(.34,1.56,.64,1), transform .28s cubic-bezier(.34,1.56,.64,1), left .28s cubic-bezier(.34,1.56,.64,1), opacity .18s ease, background .3s ease, border-color .3s ease;
+    z-index:1;
+  }
+  .nav-indicator.is-active{ opacity:1; transform:scale(1); }
+  header.nav-light .nav-indicator{
+    background:rgba(51,80,122,.07);
+    border-color:rgba(51,80,122,.3);
+  }
+  .header-actions{ display:flex; align-items:center; gap:14px; }
+  header.nav-light .btn-outline{
+    color:var(--blue-ink);
+    border-color:rgba(51,80,122,.35);
+  }
+  header.nav-light .btn-outline:hover{ background:rgba(51,80,122,.08); }
+
+  /* ---------- Mobile nav toggle ---------- */
+  .nav-toggle{
+    display:none;
+    width:42px; height:42px;
+    align-items:center; justify-content:center;
+    position:relative;
+    flex-shrink:0;
+    border-radius:12px;
+    border:1.5px solid rgba(242,233,214,.4);
+    background:transparent;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  header.nav-light .nav-toggle{ border-color:rgba(51,80,122,.3); }
+  .nav-toggle .bar{
+    position:absolute;
+    left:11px; right:11px;
+    height:2px;
+    border-radius:2px;
+    background:currentColor;
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1), opacity .2s ease, top .3s ease;
+  }
+  .nav-toggle .bar:nth-child(1){ top:15px; }
+  .nav-toggle .bar:nth-child(2){ top:20px; }
+  .nav-toggle .bar:nth-child(3){ top:25px; }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(1){ top:20px; transform:rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(2){ opacity:0; }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(3){ top:20px; transform:rotate(-45deg); }
+
+  .mobile-nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:45;
+    padding:100px 28px 40px;
+    background:rgba(33,50,74,.97);
+    -webkit-backdrop-filter:saturate(180%) blur(24px);
+    backdrop-filter:saturate(180%) blur(24px);
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    opacity:0;
+    transform:translateY(-16px);
+    visibility:hidden;
+    pointer-events:none;
+    transition:opacity .3s ease, transform .3s ease, visibility 0s linear .3s;
+  }
+  .mobile-nav.is-open{
+    opacity:1;
+    transform:translateY(0);
+    visibility:visible;
+    pointer-events:auto;
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .mobile-nav a{
+    color:var(--cream);
+    font-family:'Baloo 2', sans-serif;
+    font-size:22px;
+    font-weight:600;
+    padding:16px 4px;
+    border-bottom:1px solid rgba(242,233,214,.1);
+  }
+  .mobile-nav .btn{ margin-top:24px; align-self:flex-start; color:var(--blue-ink); font-size:16px; font-weight:600; border-bottom:none; }
+  body.nav-open{ overflow:hidden; }
+
+  /* ---------- Section shared ---------- */
+  section{ position:relative; }
+  .section-pad{ padding:110px 0; }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head h2{ font-size:clamp(30px,3.6vw,44px); margin-top:14px; color:var(--blue-ink); }
+  .section-head p{ font-size:17px; line-height:1.6; color:#54626F; margin-top:16px; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--blue-ink); color:rgba(242,233,214,.7); padding:70px 0 34px; }
+  .footer-top{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:50px;
+    border-bottom:1px solid rgba(242,233,214,.12);
+    margin-bottom:28px;
+  }
+  .footer-top .logo{ color:var(--cream); margin-bottom:14px; }
+  .footer-top p{ font-size:14.5px; line-height:1.6; max-width:280px; }
+  .footer-col h4{ font-family:'Baloo 2',sans-serif; font-size:15px; color:var(--cream); margin-bottom:16px; }
+  .footer-col a{ display:block; font-size:14.5px; margin-bottom:11px; opacity:.85; }
+  .footer-col a:hover{ opacity:1; text-decoration:underline; }
+  .footer-bottom{ display:flex; justify-content:space-between; font-size:13px; opacity:.6; }
+
+  /* ---------- Subheader ---------- */
+  .subhero{ background:var(--blue-ink); color:var(--cream); padding:136px 0 64px; }
+  .subhero .eyebrow{ color:var(--wood); }
+  .breadcrumb{ font-size:13px; color:rgba(242,233,214,.55); margin-bottom:14px; }
+  .breadcrumb a{ color:rgba(242,233,214,.85); text-decoration:underline; }
+  .subhero h1{ color:var(--cream); font-size:clamp(32px,4vw,50px); margin-top:12px; }
+  .subhero p.lede{ color:rgba(242,233,214,.82); font-size:17px; line-height:1.6; max-width:600px; margin-top:16px; }
+
+  /* ---------- Video-Frame (geteilt mit Produktseiten) ---------- */
+  .video-frame{
+    position:relative;
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    aspect-ratio:16/9;
+    background:var(--blue-ink);
+    box-shadow:0 16px 34px rgba(33,50,74,.16);
+  }
+  .video-frame img{ width:100%; height:100%; object-fit:cover; opacity:.5; filter:saturate(85%); }
+  .video-frame .play-btn{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:60px; height:60px; border-radius:50%;
+    background:rgba(242,233,214,.95);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 24px rgba(0,0,0,.3);
+    transition:transform .25s ease;
+  }
+  .video-frame .play-btn svg{ width:20px; height:20px; margin-left:3px; }
+  .help-card:hover .play-btn{ transform:translate(-50%,-50%) scale(1.08); }
+  .video-frame .video-note{
+    position:absolute; left:18px; bottom:16px;
+    color:var(--cream); font-family:'Baloo 2',sans-serif; font-weight:600; font-size:12.5px;
+    background:rgba(33,50,74,.6); padding:6px 14px; border-radius:100px;
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  }
+
+  /* ---------- Helpcenter-Grid ---------- */
+  .help-intro-row{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:50px; }
+  .help-filter{
+    font-family:'Baloo 2',sans-serif; font-weight:600; font-size:13.5px;
+    color:var(--blue-ink); background:var(--cream);
+    padding:9px 18px; border-radius:100px; border:1px solid rgba(51,80,122,.15);
+  }
+  .help-category{ margin-bottom:64px; }
+  .help-category:last-child{ margin-bottom:0; }
+  .help-category-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:26px; }
+  .help-category-head h2{ font-size:23px; color:var(--blue-ink); }
+  .help-category-head span{ font-size:13.5px; color:#8A96A3; }
+  .help-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+  .help-card{ display:flex; flex-direction:column; }
+  .help-card h3{ font-size:17.5px; color:var(--blue-ink); margin:18px 0 8px; }
+  .help-card p{ font-size:14.5px; color:#5B6773; line-height:1.55; }
+
+  .help-cta{
+    background:var(--blue);
+    border-radius:var(--radius-lg);
+    padding:56px 60px;
+    margin-top:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+    flex-wrap:wrap;
+  }
+  .help-cta h2{ color:var(--cream); font-size:26px; margin-bottom:8px; }
+  .help-cta p{ color:rgba(242,233,214,.85); font-size:15.5px; max-width:420px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    nav.header-nav{ display:none; }
+    .nav-toggle{ display:inline-flex; }
+    .help-grid{ grid-template-columns:1fr 1fr; }
+    .footer-top{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width: 640px){
+    .help-grid{ grid-template-columns:1fr; }
+    .help-cta{ flex-direction:column; align-items:flex-start; padding:40px 30px; }
+  }
+  @media (max-width: 560px){
+    .wrap{ padding:0 20px; }
+    .footer-top{ grid-template-columns:1fr; }
+    .header-actions .btn-outline{ display:none; }
+  }
+</style>
+
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="index.html">
+      <svg class="paw" viewBox="0 0 24 24" fill="none">
+        <path d="M12 21c-2.8 0-5-1.6-5-4.2 0-2.1 1.9-3.4 3.1-4.9C11 10.6 11.4 9 12 9s1 1.6 1.9 2.9c1.2 1.5 3.1 2.8 3.1 4.9 0 2.6-2.2 4.2-5 4.2Z" fill="currentColor"/>
+        <circle cx="6.5" cy="9" r="1.7" fill="currentColor"/>
+        <circle cx="17.5" cy="9" r="1.7" fill="currentColor"/>
+        <circle cx="9.5" cy="5.2" r="1.5" fill="currentColor"/>
+        <circle cx="14.5" cy="5.2" r="1.5" fill="currentColor"/>
+      </svg>
+      myocia
+    </a>
+    <nav class="header-nav">
+      <span class="nav-indicator" aria-hidden="true"></span>
+      <a href="index.html#konzept">Konzept</a>
+      <a href="index.html#produkte">Produkte</a>
+      <a href="index.html#gruender">Gründer</a>
+      <a href="index.html#zielgruppen">Zielgruppen</a>
+      <a href="index.html#kontakt">Kontakt</a>
+    </nav>
+    <div class="header-actions">
+      <a href="index.html#kontakt" class="btn btn-outline">Beratung anfragen</a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-nav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html#konzept">Konzept</a>
+  <a href="index.html#produkte">Produkte</a>
+  <a href="index.html#gruender">Gründer</a>
+  <a href="index.html#zielgruppen">Zielgruppen</a>
+  <a href="index.html#kontakt">Kontakt</a>
+  <a href="helpcenter.html">Hilfe-Center</a>
+  <a href="index.html#kontakt" class="btn btn-primary">Beratung anfragen</a>
+</div>
+
+<section class="subhero" data-nav-theme="dark">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="index.html">Start</a> / Hilfe-Center</div>
+    <span class="eyebrow">Hilfe-Center</span>
+    <h1>Erklärvideos &amp; Anleitungen</h1>
+    <p class="lede">Alles rund um Montage, Einstellung und Übungen an Dehnskulptur und Rückneige – kurz erklärt zum Nachschauen, wann immer Sie es brauchen.</p>
+  </div>
+</section>
+
+<section class="section-pad" data-nav-theme="light">
+  <div class="wrap">
+
+    <div class="help-intro-row">
+      <span class="help-filter">Erste Schritte</span>
+      <span class="help-filter">Dehnskulptur</span>
+      <span class="help-filter">Rückneige</span>
+      <span class="help-filter">Montage</span>
+    </div>
+
+    <div class="help-category">
+      <div class="help-category-head">
+        <h2>Erste Schritte</h2>
+        <span>Bevor es losgeht</span>
+      </div>
+      <div class="help-grid">
+        <div class="help-card">
+          <div class="video-frame">
+            <img src="images/hero.jpg" alt="">
+            <div class="play-btn"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5Z" fill="var(--blue-ink)"/></svg></div>
+            <span class="video-note">Video folgt in Kürze</span>
+          </div>
+          <h3>Willkommen bei myocia</h3>
+          <p>Ein kurzer Überblick über die KiD-Übungen und wie Dehnskulptur und Rückneige zusammenspielen.</p>
+        </div>
+        <div class="help-card">
+          <div class="video-frame">
+            <img src="images/dehnskulptur.jpg" alt="">
+            <div class="play-btn"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5Z" fill="var(--blue-ink)"/></svg></div>
+            <span class="video-note">Video folgt in Kürze</span>
+          </div>
+          <h3>Wandmontage Schritt für Schritt</h3>
+          <p>So werden Dehnskulptur und Rückneige sicher und passgenau an der Wand montiert.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="help-category">
+      <div class="help-category-head">
+        <h2>Dehnskulptur</h2>
+        <span>Übungen &amp; Handhabung</span>
+      </div>
+      <div class="help-grid">
+        <div class="help-card">
+          <div class="video-frame">
+            <img src="images/dehnskulptur-anwendung.jpg" alt="">
+            <div class="play-btn"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5Z" fill="var(--blue-ink)"/></svg></div>
+            <span class="video-note">Video folgt in Kürze</span>
+          </div>
+          <h3>Übungen an der Dehnskulptur</h3>
+          <p>Die wichtigsten Griffe und Bewegungsabläufe für die ganzheitliche Aktivierung des Bewegungsapparates.</p>
+        </div>
+        <div class="help-card">
+          <div class="video-frame">
+            <img src="images/dehnskulptur.jpg" alt="">
+            <div class="play-btn"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5Z" fill="var(--blue-ink)"/></svg></div>
+            <span class="video-note">Video folgt in Kürze</span>
+          </div>
+          <h3>Der Wadendehner im Einsatz</h3>
+          <p>Beide Steigungen im Vergleich – so dosieren Sie die Intensität der Wadendehnung richtig.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="help-category">
+      <div class="help-category-head">
+        <h2>Rückneige</h2>
+        <span>Übungen &amp; Einstellung</span>
+      </div>
+      <div class="help-grid">
+        <div class="help-card">
+          <div class="video-frame">
+            <img src="images/rueckneige-anwendung.jpg" alt="">
+            <div class="play-btn"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5Z" fill="var(--blue-ink)"/></svg></div>
+            <span class="video-note">Video folgt in Kürze</span>
+          </div>
+          <h3>Übungen an der Rückneige</h3>
+          <p>Gezielte Streckung und Aufrichtung des Rückens – die Grundübung im Detail.</p>
+        </div>
+        <div class="help-card">
+          <div class="video-frame">
+            <img src="images/rueckneige.jpg" alt="">
+            <div class="play-btn"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5Z" fill="var(--blue-ink)"/></svg></div>
+            <span class="video-note">Video folgt in Kürze</span>
+          </div>
+          <h3>Seillänge &amp; Auflage einstellen</h3>
+          <p>So passen Sie die Rückneige individuell an Körpergröße und gewünschte Intensität an.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="help-cta">
+      <div>
+        <h2>Ihre Frage nicht dabei?</h2>
+        <p>Wir beraten Sie gerne persönlich zu Übungen, Montage oder der Auswahl der passenden Geräte.</p>
+      </div>
+      <a href="index.html#kontakt" class="btn btn-primary">Beratung anfragen</a>
+    </div>
+
+  </div>
+</section>
+
+<footer data-nav-theme="dark">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="logo">
+          <svg class="paw" viewBox="0 0 24 24" fill="none">
+            <path d="M12 21c-2.8 0-5-1.6-5-4.2 0-2.1 1.9-3.4 3.1-4.9C11 10.6 11.4 9 12 9s1 1.6 1.9 2.9c1.2 1.5 3.1 2.8 3.1 4.9 0 2.6-2.2 4.2-5 4.2Z" fill="#F2E9D6"/>
+            <circle cx="6.5" cy="9" r="1.7" fill="#F2E9D6"/>
+            <circle cx="17.5" cy="9" r="1.7" fill="#F2E9D6"/>
+            <circle cx="9.5" cy="5.2" r="1.5" fill="#F2E9D6"/>
+            <circle cx="14.5" cy="5.2" r="1.5" fill="#F2E9D6"/>
+          </svg>
+          myocia
+        </div>
+        <p>KiD-Übungen &amp; Myoreflextherapie aus Holz und Stahl – gegründet von Armin Rothfuß.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Produkte</h4>
+        <a href="produkt-dehnskulptur.html">Dehnskulptur</a>
+        <a href="produkt-rueckneige.html">Rückneige</a>
+        <a href="index.html#bundles">Bundles für Teams</a>
+      </div>
+      <div class="footer-col">
+        <h4>Über myocia</h4>
+        <a href="zielgruppen.html">Zielgruppen</a>
+        <a href="gruender.html">Der Gründer</a>
+        <a href="index.html#konzept">Das Konzept</a>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <a href="mailto:hallo@myocia.com">hallo@myocia.com</a>
+        <a href="helpcenter.html">Hilfe-Center</a>
+        <a href="index.html#kontakt">Beratung anfragen</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Myocia</span>
+      <span>Impressum · Datenschutz</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---------- Navbar passt sich an Hintergrundfarbe des Abschnitts an ----------
+  (function(){
+    const header = document.querySelector('header');
+    const sections = Array.from(document.querySelectorAll('[data-nav-theme]'));
+    if(!header || !sections.length) return;
+
+    function updateTheme(){
+      const probeY = header.offsetHeight / 2 + 4;
+      let current = sections[0];
+      for(const s of sections){
+        const rect = s.getBoundingClientRect();
+        if(rect.top <= probeY && rect.bottom > probeY){ current = s; break; }
+        if(rect.top <= probeY) current = s;
+      }
+      const theme = current.getAttribute('data-nav-theme');
+      header.classList.toggle('nav-light', theme === 'light');
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', function(){
+      if(!ticking){
+        window.requestAnimationFrame(function(){ updateTheme(); ticking = false; });
+        ticking = true;
+      }
+    }, { passive:true });
+
+    window.addEventListener('resize', updateTheme);
+    updateTheme();
+  })();
+
+  // ---------- Abgerundeter Rahmen mit Pop-Animation bei Hover über einzelne Nav-Links ----------
+  (function(){
+    const nav = document.querySelector('.header-nav');
+    const indicator = document.querySelector('.nav-indicator');
+    if(!nav || !indicator) return;
+    const links = nav.querySelectorAll('a');
+
+    links.forEach(function(link){
+      link.addEventListener('mouseenter', function(){
+        indicator.style.left = link.offsetLeft + 'px';
+        indicator.style.width = link.offsetWidth + 'px';
+        indicator.classList.add('is-active');
+      });
+      link.addEventListener('mouseleave', function(){
+        indicator.classList.remove('is-active');
+      });
+    });
+  })();
+
+  // ---------- Mobiles Menü ----------
+  (function(){
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('mobile-nav');
+    if(!toggle || !menu) return;
+
+    function closeMenu(){
+      menu.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    }
+    function openMenu(){
+      menu.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('nav-open');
+    }
+
+    toggle.addEventListener('click', function(){
+      menu.classList.contains('is-open') ? closeMenu() : openMenu();
+    });
+    menu.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', closeMenu);
+    });
+    window.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeMenu();
+    });
+    window.addEventListener('resize', function(){
+      if(window.innerWidth > 980) closeMenu();
+    });
+  })();
+</script>
+
+</body>
+</html>

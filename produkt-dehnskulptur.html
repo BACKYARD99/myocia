@@ -95,14 +95,24 @@
     position:fixed;
     top:0; left:0; right:0;
     z-index:50;
-    padding:26px 0;
+    padding:18px 0;
     color:var(--cream);
-    transition:color .35s ease;
+    background:rgba(33,50,74,.4);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid rgba(242,233,214,.09);
+    box-shadow:0 1px 20px rgba(15,25,40,.08);
+    transition:color .4s ease, background-color .4s ease, border-color .4s ease, box-shadow .4s ease;
   }
   header .wrap{
     display:flex; align-items:center; justify-content:space-between;
   }
-  header.nav-light{ color:var(--blue-ink); }
+  header.nav-light{
+    color:var(--blue-ink);
+    background:rgba(248,242,228,.78);
+    border-bottom-color:rgba(51,80,122,.08);
+    box-shadow:0 1px 20px rgba(33,50,74,.06);
+  }
   .logo{
     display:flex; align-items:center; gap:10px;
     font-family:'Baloo 2', sans-serif;
@@ -141,12 +151,76 @@
     background:rgba(51,80,122,.07);
     border-color:rgba(51,80,122,.3);
   }
-  .header-actions{ display:flex; align-items:center; gap:18px; }
+  .header-actions{ display:flex; align-items:center; gap:14px; }
   header.nav-light .btn-outline{
     color:var(--blue-ink);
     border-color:rgba(51,80,122,.35);
   }
   header.nav-light .btn-outline:hover{ background:rgba(51,80,122,.08); }
+
+  /* ---------- Mobile nav toggle ---------- */
+  .nav-toggle{
+    display:none;
+    width:42px; height:42px;
+    align-items:center; justify-content:center;
+    position:relative;
+    flex-shrink:0;
+    border-radius:12px;
+    border:1.5px solid rgba(242,233,214,.4);
+    background:transparent;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  header.nav-light .nav-toggle{ border-color:rgba(51,80,122,.3); }
+  .nav-toggle .bar{
+    position:absolute;
+    left:11px; right:11px;
+    height:2px;
+    border-radius:2px;
+    background:currentColor;
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1), opacity .2s ease, top .3s ease;
+  }
+  .nav-toggle .bar:nth-child(1){ top:15px; }
+  .nav-toggle .bar:nth-child(2){ top:20px; }
+  .nav-toggle .bar:nth-child(3){ top:25px; }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(1){ top:20px; transform:rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(2){ opacity:0; }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(3){ top:20px; transform:rotate(-45deg); }
+
+  .mobile-nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:45;
+    padding:100px 28px 40px;
+    background:rgba(33,50,74,.97);
+    -webkit-backdrop-filter:saturate(180%) blur(24px);
+    backdrop-filter:saturate(180%) blur(24px);
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    opacity:0;
+    transform:translateY(-16px);
+    visibility:hidden;
+    pointer-events:none;
+    transition:opacity .3s ease, transform .3s ease, visibility 0s linear .3s;
+  }
+  .mobile-nav.is-open{
+    opacity:1;
+    transform:translateY(0);
+    visibility:visible;
+    pointer-events:auto;
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .mobile-nav a{
+    color:var(--cream);
+    font-family:'Baloo 2', sans-serif;
+    font-size:22px;
+    font-weight:600;
+    padding:16px 4px;
+    border-bottom:1px solid rgba(242,233,214,.1);
+  }
+  .mobile-nav .btn{ margin-top:24px; align-self:flex-start; color:var(--blue-ink); font-size:16px; font-weight:600; border-bottom:none; }
+  body.nav-open{ overflow:hidden; }
 
   /* ---------- Hero ---------- */
   .hero{
@@ -499,6 +573,7 @@
   }
   @media (max-width: 980px){
     nav.header-nav{ display:none; }
+    .nav-toggle{ display:inline-flex; }
     .hero .wrap{ grid-template-columns:1fr; text-align:left; }
     .hero-blob-wrap{ height:400px; order:-1; }
     .konzept-grid{ grid-template-columns:1fr; }
@@ -518,12 +593,13 @@
     .zg-grid{ grid-template-columns:1fr; }
     .footer-top{ grid-template-columns:1fr; }
     .hero-proof{ gap:20px; }
+    .header-actions .btn-outline{ display:none; }
   }
 </style>
 
 <style>
   /* ---------- Subheader ---------- */
-  .subhero{ background:var(--blue-ink); color:var(--cream); padding:150px 0 64px; }
+  .subhero{ background:var(--blue-ink); color:var(--cream); padding:136px 0 64px; }
   .subhero .eyebrow{ color:var(--wood); }
   .breadcrumb{ font-size:13px; color:rgba(242,233,214,.55); margin-bottom:14px; }
   .breadcrumb a{ color:rgba(242,233,214,.85); text-decoration:underline; }
@@ -559,6 +635,39 @@
   .gr-facts div span{ font-size:14px; color:#5B6773; line-height:1.5; }
   .gr-external{ font-size:13.5px; color:#7C8894; margin-top:4px; }
   .gr-external a{ color:var(--blue); text-decoration:underline; font-weight:600; }
+
+  /* ---------- Produkt-Video ---------- */
+  .pd-video{ margin-top:60px; padding-top:50px; border-top:1px solid rgba(35,48,63,.08); }
+  .pd-video-head{ max-width:640px; margin-bottom:28px; }
+  .pd-video-head h2{ font-size:26px; color:var(--blue-ink); margin-bottom:10px; }
+  .pd-video-head p{ font-size:15.5px; color:#5B6773; line-height:1.6; }
+  .video-frame{
+    position:relative;
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    aspect-ratio:16/9;
+    background:var(--blue-ink);
+    box-shadow:0 20px 44px rgba(33,50,74,.16);
+  }
+  .video-frame img{ width:100%; height:100%; object-fit:cover; opacity:.5; filter:saturate(85%); }
+  .video-frame .play-btn{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:76px; height:76px; border-radius:50%;
+    background:rgba(242,233,214,.95);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 12px 30px rgba(0,0,0,.3);
+    transition:transform .25s ease;
+  }
+  .video-frame .play-btn svg{ width:26px; height:26px; margin-left:4px; }
+  .video-frame:hover .play-btn{ transform:translate(-50%,-50%) scale(1.06); }
+  .video-frame .video-note{
+    position:absolute; left:24px; bottom:22px;
+    color:var(--cream); font-family:'Baloo 2',sans-serif; font-weight:600; font-size:13.5px;
+    background:rgba(33,50,74,.6); padding:8px 16px; border-radius:100px;
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  }
+  .pd-video-foot{ margin-top:20px; font-size:14.5px; color:#5B6773; }
+  .pd-video-foot a{ color:var(--blue); font-weight:700; }
 
   /* ---------- Zielgruppen detail ---------- */
   .zgd-item{ display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; padding:56px 0; border-bottom:1px solid rgba(35,48,63,.08); }
@@ -605,9 +714,22 @@
     </nav>
     <div class="header-actions">
       <a href="index.html#kontakt" class="btn btn-outline">Beratung anfragen</a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-nav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
     </div>
   </div>
 </header>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html#konzept">Konzept</a>
+  <a href="index.html#produkte">Produkte</a>
+  <a href="index.html#gruender">Gründer</a>
+  <a href="index.html#zielgruppen">Zielgruppen</a>
+  <a href="index.html#kontakt">Kontakt</a>
+  <a href="helpcenter.html">Hilfe-Center</a>
+  <a href="index.html#kontakt" class="btn btn-primary">Beratung anfragen</a>
+</div>
 
 
 <section class="subhero" data-nav-theme="dark">
@@ -623,7 +745,7 @@
   <div class="wrap">
     <div class="pd-grid">
       <div class="pd-gallery">
-        <img src="images/dehnskulptur.jpg" alt="Dehnskulptur, an der Wand montiert">
+        <img src="images/dehnskulptur-4-3.png" alt="Dehnskulptur, an der Wand montiert">
         <img src="images/dehnskulptur-anwendung.jpg" alt="Dehnskulptur in Anwendung an einer Säule im Büro">
       </div>
       <div class="pd-copy">
@@ -652,6 +774,20 @@
           <a href="index.html#bundles" class="btn btn-outline" style="color:var(--blue-ink); border-color:rgba(51,80,122,.35);">Bundles ansehen</a>
         </div>
       </div>
+    </div>
+
+    <div class="pd-video">
+      <div class="pd-video-head">
+        <span class="eyebrow">Anleitung</span>
+        <h2>Die Dehnskulptur in Bewegung</h2>
+        <p>Ein kurzes Video zeigt die wichtigsten Übungen und die richtige Handhabung an der Wand – inklusive Wadendehner.</p>
+      </div>
+      <div class="video-frame">
+        <img src="images/dehnskulptur-anwendung.jpg" alt="">
+        <div class="play-btn"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5Z" fill="var(--blue-ink)"/></svg></div>
+        <span class="video-note">Video folgt in Kürze</span>
+      </div>
+      <p class="pd-video-foot">Weitere Erklärvideos und Anleitungen finden Sie im <a href="helpcenter.html">Hilfe-Center →</a></p>
     </div>
 
     <div class="pd-crosslink">
@@ -693,6 +829,7 @@
       <div class="footer-col">
         <h4>Kontakt</h4>
         <a href="mailto:hallo@myocia.com">hallo@myocia.com</a>
+        <a href="helpcenter.html">Hilfe-Center</a>
         <a href="index.html#kontakt">Beratung anfragen</a>
       </div>
     </div>
@@ -750,6 +887,37 @@
       link.addEventListener('mouseleave', function(){
         indicator.classList.remove('is-active');
       });
+    });
+  })();
+
+  // ---------- Mobiles Menü ----------
+  (function(){
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('mobile-nav');
+    if(!toggle || !menu) return;
+
+    function closeMenu(){
+      menu.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    }
+    function openMenu(){
+      menu.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('nav-open');
+    }
+
+    toggle.addEventListener('click', function(){
+      menu.classList.contains('is-open') ? closeMenu() : openMenu();
+    });
+    menu.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', closeMenu);
+    });
+    window.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeMenu();
+    });
+    window.addEventListener('resize', function(){
+      if(window.innerWidth > 980) closeMenu();
     });
   })();
 </script>
