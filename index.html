@@ -143,7 +143,7 @@
     opacity:.6;
     transition:transform .2s ease, margin .2s ease;
   }
-  .nav-item:hover > a::after, .nav-item:focus-within > a::after{ transform:rotate(225deg); margin-top:3px; }
+  .nav-item.is-open > a::after, .nav-item:hover > a::after, .nav-item:focus-within > a::after{ transform:rotate(225deg); margin-top:3px; }
   .nav-dropdown{
     position:absolute;
     top:calc(100% + 12px);
@@ -166,6 +166,7 @@
     transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s;
     z-index:10;
   }
+  .nav-item.is-open .nav-dropdown,
   .nav-item:hover .nav-dropdown,
   .nav-item:focus-within .nav-dropdown{
     opacity:1;
@@ -567,6 +568,8 @@
   .bundle-card ul li{ font-size:15px; color:#5B6773; line-height:1.5; padding-left:24px; position:relative; }
   .bundle-card ul li::before{ content:'\2713'; position:absolute; left:0; top:0; color:var(--blue); font-weight:700; }
   .bundle-note{ font-size:13.5px; color:#7C8894; line-height:1.55; margin-top:18px; }
+  .bundle-card{ display:flex; flex-direction:column; }
+  .bundle-more{ margin-top:18px; display:inline-flex; align-items:center; gap:8px; color:var(--blue); font-weight:700; font-size:14.5px; }
 
   /* ---------- Kontakt ---------- */
   .kontakt{ background:var(--blue-ink); color:var(--cream); }
@@ -687,7 +690,7 @@
       <span class="nav-indicator" aria-hidden="true"></span>
       <a href="#konzept">Konzept</a>
       <div class="nav-item">
-        <a href="geraete.html">Produkte</a>
+        <a href="geraete.html">Unsere Geräte</a>
         <div class="nav-dropdown">
           <a href="produkt-dehnskulptur.html">Dehnskulptur</a>
           <a href="produkt-rueckneige.html">Rückneige</a>
@@ -719,7 +722,7 @@
 
 <div class="mobile-nav" id="mobile-nav">
   <a href="#konzept">Konzept</a>
-  <a href="geraete.html">Produkte</a>
+  <a href="geraete.html">Unsere Geräte</a>
   <a href="ueber-uns.html">Über uns</a>
   <a href="zielgruppen.html">Zielgruppen</a>
   <a href="#kontakt">Kontakt</a>
@@ -739,9 +742,8 @@
         <a href="#zielgruppen" class="btn btn-outline">Für Praxen &amp; Unternehmen</a>
       </div>
       <div class="hero-proof">
-        <div><strong>3</strong>Geräte aus Holz &amp; Stahl</div>
+        <div><strong>2</strong>Geräte für den Alltag</div>
         <div><strong>25</strong>Jahre Praxiserfahrung</div>
-        <div><strong>0</strong>Termine, Kabel, Akkus</div>
       </div>
     </div>
     <div class="hero-blob-wrap">
@@ -918,7 +920,7 @@
       <p>Beide Bundles umfassen Dehnskulptur, Rückneige &amp; Wadendehner inklusive Lieferung und Montage – der Unterschied liegt im Umfang der Schulung.</p>
     </div>
     <div class="bundle-grid">
-      <div class="bundle-card">
+      <a href="geraete.html#bundles" class="bundle-card">
         <span class="tag">Bundle 1</span>
         <h3>Einstieg fürs Team</h3>
         <ul>
@@ -926,8 +928,9 @@
           <li>Inkl. Lieferung &amp; Montage</li>
           <li>Geräteschulung, 0,5 Tage*</li>
         </ul>
-      </div>
-      <div class="bundle-card">
+        <span class="bundle-more">Details ansehen →</span>
+      </a>
+      <a href="geraete.html#bundles" class="bundle-card">
         <span class="tag">Bundle 2</span>
         <h3>Mit Trainer:innenausbildung</h3>
         <ul>
@@ -935,7 +938,8 @@
           <li>Inkl. Lieferung &amp; Montage</li>
           <li>Geräteschulung mit Trainer:innenausbildung, 1 Tag*</li>
         </ul>
-      </div>
+        <span class="bundle-more">Details ansehen →</span>
+      </a>
     </div>
     <p class="bundle-note">* Die Schulung wird in Absprache an die Unternehmensgröße optimiert umgesetzt. Bei einer Gruppe von bis zu 10 Personen wird ein halbtägiger Einführungskurs für das gesamte Team angeboten, bei dem auf die individuellen Bedürfnisse eingegangen wird (Bundle 1). Bei größeren Teams wird eine Gruppe von bis zu 10 Personen als Trainer:innen geschult, die wiederum die gelernten Übungen mit dem bereitgestellten Konzept weitergeben – hierfür ist eine tiefgründigere Tagesschulung notwendig (Bundle 2). Wir beraten Sie gerne bei der Auswahl des passenden Bundles.</p>
   </div>
@@ -1076,15 +1080,60 @@
     if(!nav || !indicator) return;
     const links = nav.querySelectorAll(':scope > a, :scope > .nav-item > a');
 
+    // Position relativ zur Nav berechnen - offsetLeft waere bei Links
+    // innerhalb von .nav-item auf das Elternelement bezogen und damit falsch.
+    function moveTo(link){
+      const navRect = nav.getBoundingClientRect();
+      const r = link.getBoundingClientRect();
+      indicator.style.left = (r.left - navRect.left) + 'px';
+      indicator.style.top = (r.top - navRect.top) + 'px';
+      indicator.style.width = r.width + 'px';
+      indicator.style.height = r.height + 'px';
+      indicator.classList.add('is-active');
+    }
+
     links.forEach(function(link){
-      link.addEventListener('mouseenter', function(){
-        indicator.style.left = link.offsetLeft + 'px';
-        indicator.style.width = link.offsetWidth + 'px';
-        indicator.classList.add('is-active');
+      link.addEventListener('mouseenter', function(){ moveTo(link); });
+      link.addEventListener('focus', function(){ moveTo(link); });
+      link.addEventListener('mouseleave', function(){ indicator.classList.remove('is-active'); });
+      link.addEventListener('blur', function(){ indicator.classList.remove('is-active'); });
+    });
+  })();
+
+  // ---------- Dropdown-Menues (per JS gesteuert, unabhaengig von der CSS-:hover-Kette) ----------
+  (function(){
+    const items = Array.from(document.querySelectorAll('.nav-item'));
+    if(!items.length) return;
+    let closeTimer = null;
+
+    function closeAll(except){
+      items.forEach(function(it){ if(it !== except) it.classList.remove('is-open'); });
+    }
+    function openItem(item){
+      clearTimeout(closeTimer);
+      closeAll(item);
+      item.classList.add('is-open');
+    }
+    function scheduleClose(item){
+      clearTimeout(closeTimer);
+      // kurze Verzoegerung, damit der Weg vom Link zum Panel nicht sofort schliesst
+      closeTimer = setTimeout(function(){ item.classList.remove('is-open'); }, 220);
+    }
+
+    items.forEach(function(item){
+      item.addEventListener('mouseenter', function(){ openItem(item); });
+      item.addEventListener('mouseleave', function(){ scheduleClose(item); });
+      item.addEventListener('focusin', function(){ openItem(item); });
+      item.addEventListener('focusout', function(e){
+        if(!item.contains(e.relatedTarget)) item.classList.remove('is-open');
       });
-      link.addEventListener('mouseleave', function(){
-        indicator.classList.remove('is-active');
-      });
+    });
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeAll(null);
+    });
+    document.addEventListener('click', function(e){
+      if(!e.target.closest('.nav-item')) closeAll(null);
     });
   })();
 
